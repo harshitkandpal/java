@@ -1,6 +1,9 @@
+
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Collections;
 
 
 /*
@@ -104,5 +107,82 @@ public class Lists {
         nums.removeLast();   // remove from end
 
         System.out.println("After removeFirst() & removeLast(): " + nums); // [1, 2, 3]
+
+
+        // ------------------- SORT -------------------
+        List<String> cars = new ArrayList<String>();
+
+        cars.add("Volvo");
+        cars.add("BMW");
+        cars.add("Ford");
+        cars.add("Mazda");
+
+        System.out.println("Before sort: " + cars);
+
+        /*
+            🔹 Collections.sort()
+            - Collections is a utility class in Java.
+            - sort(List<T>) arranges elements in their "natural order".
+              For Strings → alphabetical order (lexicographical).
+              For Integers → ascending order.
+            - For custom rules, we can pass a Comparator.
+        */
+        Collections.sort(cars);
+
+        System.out.println("After sort: " + cars);
+
+
+
+        // ------------------- ITERATING A LIST -------------------
+
+        /*
+            Two common ways to iterate:
+            
+            1. For-loop with index:
+               - Full control over index.
+               - Can modify elements using set(index, value).
+               - Useful when you care about position.
+
+            2. Enhanced for-loop (for-each):
+               - Cleaner syntax, less boilerplate.
+               - Iterates directly over elements.
+               - Cannot modify list structure (like add/remove).
+        */
+
+        System.out.print("Classic for-loop: ");
+        for (int i = 0; i < cars.size(); i++) {
+            System.out.print(cars.get(i) + " ");
+        }
+        System.out.println();
+
+        System.out.print("Enhanced for-loop: ");
+        for (String car : cars) {
+            System.out.print(car + " ");
+        }
+        System.out.println();
+
+
+
+        /*
+            🔹 Question: If we modify 'car' inside the for-each loop,
+               will it update the item in the list?
+
+            Answer:
+              - For objects (like String, Integer), the loop variable 
+                is just a COPY of the reference.
+              - If you reassign it (car = "Tesla"), the list does NOT change.
+              - But if the object itself is mutable (e.g., StringBuilder),
+                then changing its state WOULD reflect in the list.
+
+            Example with String (immutable):
+              for (String car : cars) {
+                  car = "Tesla";   // does NOT change list
+              }
+
+            Example with StringBuilder (mutable):
+              for (StringBuilder sb : list) {
+                  sb.append("X");  // DOES change content in list
+              }
+        */
     }
 }
