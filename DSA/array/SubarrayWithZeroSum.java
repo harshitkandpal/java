@@ -19,6 +19,23 @@ public class SubarrayWithZeroSum {
         
         return false;
     }
+
+    public static boolean hasSumSubarray(int[] arr, int sum){
+        HashSet<Integer> h = new HashSet<>();
+        int presum = 0;
+
+        for(int i=0; i<arr.length;i++){
+            presum+=arr[i];
+
+            if(presum-sum==0) return true;
+
+            if(h.contains(presum-sum)) return true;
+
+            h.add(presum);
+        }
+        
+        return false;
+    }
     
 
     public static void main(String[] args) {
